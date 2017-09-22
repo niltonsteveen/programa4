@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+
+  <% include ../partials/nav.ejs %>
+  <main>
+  	<div class="container"> 
+  		<div class="row">
+  			<form action="/" method="post" encType="multipart/form-data">
+  				<div class="file-field input-field col s9">
+  					<div class="btn lime lighten-4">
+  						<span style="color: #716031">File</span>
+  						<input type="file" name="fileUInput">
+  					</div>
+  					<div class="file-path-wrapper">
+  						<input class="file-path validate" type="text">
+  					</div>
+  				</div>
+  				<div class="input-field col s3">
+  					<input style="color: #716031" class="waves-effect waves-light btn col s12 lime lighten-4" type="submit" value="Calcular">
+  				</div>
+  			</form>
+  		</div>
+  		<div class="row">
+        <table>
+           <thead>
+            <tr>
+                <th></th>
+                <th>VS</th>
+                <th>S</th>
+                <th>M</th>
+                <th>L</th>
+                <th>VL</th>
+            </tr>           
+          </thead>
+          <tbody>
+            <tr>
+              <td>Any Method</td>
+              <td><%= VS %></td>
+              <td><%= S %></td>
+              <td><%= M %></td>
+              <td><%= L %></td>
+              <td><%= VL %></td>
+            </tr>
+          </tbody>
+        </table>
+
+			<table>
+			    <thead>
+            <tr>
+              <% headers.forEach(function(header) { %>
+                <th><%= header%> </th>
+              <% }); %>
+            </tr>			    	
+			    </thead>
+          <tbody>
+            <% results.forEach(function(obj) { %>
+              <% var i=0; %>
+                <tr>
+                  <td><%= obj.name %></td>
+                  <td><%= obj.first %></td>
+                  <td><%= obj.second %></td>
+                  <td><%= obj['loc-method'] %></td>
+                  <td><%= obj.lnxi %></td>
+                  <td><%= obj.lnxiAvg %></td>
+                </tr>
+              <% i++; %>
+            <% }); %>
+            <tr>
+              <td>Total</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><%= summary %></td>
+              <td><%= varianceSum %></td>
+            </tr>
+          </tbody>
+			</table>
+  		</div>
+  	</div>
+  </main>
+  <% include ../partials/footer.ejs %>
+
+
+</body>
+</html>
